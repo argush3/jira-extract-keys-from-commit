@@ -2,9 +2,15 @@ name: 'Jira Extract Keys From Commit'
 description: 'Github Action to extract jira keys from commit messages and output in comma delimited format.  This action
               was created to be used with jira-upload-build-info Github Action'
 inputs:
+  parse-all-commits:
+    description: 'All commits will be parsed.  By default only the head commit is parsed when commit-message input
+                value is not provided'
+    required: false
+    default: false
   commit-message:
-    description: 'commit message to be parsed for jira keys'
-    required: true
+    description: 'commit message to be parsed for jira keys.  Note that if this input is not provided,
+                the commits found in github.context.payload will be used'
+    required: false
 
 outputs:
   jira-keys:

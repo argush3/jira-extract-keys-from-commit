@@ -9,7 +9,7 @@ async function extractJiraKeysFromCommit() {
         const regex = /([A-Z]+-\d+)/g;
         const commitMessage = core.getInput('commit-message');
         console.log("commitMessage: " + commitMessage);
-        const parseAllCommits = core.getInput('parse-all-commits');
+        const parseAllCommits = core.getInput('parse-all-commits') == 'true';
         console.log("parseAllCommits: " + parseAllCommits);
 
         if(commitMessage) {
@@ -25,7 +25,7 @@ async function extractJiraKeysFromCommit() {
             console.log("github context json payload: ", jsonPayload);
             const payload = github.context.payload;
 
-            if(parseAllCommits == true) {
+            if(parseAllCommits) {
                 console.log("parse-all-commits input val is true");
                 let resultArr = [];
 

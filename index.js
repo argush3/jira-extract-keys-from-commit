@@ -29,7 +29,7 @@ async function extractJiraKeysFromCommit() {
 
         const token = process.env['GITHUB_TOKEN'];
         console.log("github token: " + token);
-        const octokit = new gihub.Github(token);
+        const octokit = new github.Github(token);
 
         if(isPullRequest) {
             console.log("is pull request");

@@ -32,7 +32,7 @@ async function extractJiraKeysFromCommit() {
         const octokit = new github.Github(token);
 
         if(isPullRequest) {
-            console.log("is pull request");
+            console.log("is pull request...");
 
             console.log("payload.repository.owner.login: " + payload.repository.owner.login);
             console.log("payload.repository.name: " + payload.repository.name);

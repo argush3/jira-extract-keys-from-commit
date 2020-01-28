@@ -19,8 +19,9 @@ async function extractJiraKeysFromCommit() {
         const parseAllCommits = core.getInput('parse-all-commits') == 'true';
         console.log("parseAllCommits: " + parseAllCommits);
         const jsonPayload = JSON.stringify(github.context.payload, undefined, 2);
-        console.log("github context json payload: ", jsonPayload);
+        // console.log("github context json payload: ", jsonPayload);
         const payload = github.context.payload;
+        console.log("github: ", github);
 
         if(isPullRequest) {
             console.log("is pull request");
@@ -45,7 +46,7 @@ async function extractJiraKeysFromCommit() {
             else {
                 console.log("no commit-message input val provided...");
                 const jsonPayload = JSON.stringify(github.context.payload, undefined, 2);
-                console.log("github context json payload: ", jsonPayload);
+                // console.log("github context json payload: ", jsonPayload);
                 const payload = github.context.payload;
 
                 if(parseAllCommits) {

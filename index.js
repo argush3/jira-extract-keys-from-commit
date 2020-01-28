@@ -38,10 +38,14 @@ async function extractJiraKeysFromCommit() {
             console.log("payload.repository.name: " + payload.repository.name);
             console.log("payload.number: " + payload.number);
 
+            const owner = payload.repository.owner.login;
+            const repo = payload.repository.name;
+            const prNum = payload.number;
+
             const commits = await octokit.pulls.listCommits({
-                payload.repository.owner.login,
-                payload.repository.name,
-                payload.number
+                owner,
+                repo,
+                prNum
             });
             console.log("commits: ", commits);
             core.setOutput("jira-keys", "");

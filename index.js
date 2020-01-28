@@ -28,6 +28,7 @@ async function extractJiraKeysFromCommit() {
 
         if(isPullRequest) {
             console.log("is pull request");
+
             const commits = await octokit.pulls.listCommits({
                 owner: payload.repository.owner.login,
                 repo: payload.repository.name,

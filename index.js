@@ -33,6 +33,7 @@ async function extractJiraKeysFromCommit() {
                 repo: payload.repository.name,
                 pull_number: payload.number
             });
+            console.log("commits: ", commits);
             core.setOutput("jira-keys", "");
         }
         else {

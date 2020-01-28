@@ -1,7 +1,7 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
+import * as core from '@actions/core';
+import * as github from '@actions/github';
 const matchAll = require("match-all");
-const Octokit = require("@octokit/rest");
+// const Octokit = require("@octokit/rest");
 // const Octokit = require("@octokit/action");
 
 async function extractJiraKeysFromCommit() {
@@ -29,7 +29,7 @@ async function extractJiraKeysFromCommit() {
 
         const token = process.env['GITHUB_TOKEN'];
         console.log("github token: " + token);
-        const octokit = new github.Github(token);
+        const octokit: github.GitHub = new github.Github(token);
 
         if(isPullRequest) {
             console.log("is pull request...");
@@ -41,7 +41,6 @@ async function extractJiraKeysFromCommit() {
             const owner = payload.repository.owner.login;
             const repo = payload.repository.name;
             const prNum = payload.number;
-
             const commits = await octokit.pulls.listCommits({
                 owner,
                 repo,

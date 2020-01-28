@@ -17,7 +17,7 @@ async function extractJiraKeysFromCommit() {
         const parseAllCommits = core.getInput('parse-all-commits') == 'true';
         console.log("parseAllCommits: " + parseAllCommits);
         const jsonPayload = JSON.stringify(github.context.payload, undefined, 2);
-        console.log("github context json payload: ", jsonPayload);
+        // console.log("github context json payload: ", jsonPayload);
         const payload = github.context.payload;
         // console.log("github: ", github);
 
@@ -28,7 +28,7 @@ async function extractJiraKeysFromCommit() {
 
         if(isPullRequest) {
             console.log("is pull request");
-            const commits = octokit.pulls.listCommits({
+            const commits = await octokit.pulls.listCommits({
                 owner: payload.repository.owner.login,
                 repo: payload.repository.name,
                 pull_number: payload.number

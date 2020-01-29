@@ -44,10 +44,10 @@ async function extractJiraKeysFromCommit() {
                 repo: repo,
                 pull_number: prNum
             });
-            console.log("commits: ", data);
+            // console.log("commits: ", data);
 
             data.forEach(item => {
-                console.log("commit: ", item.commit.message);
+                // console.log("commit: ", item.commit.message);
                 const commit = item.commit;
                 const matches = matchAll(commit.message, regex).toArray();
                 matches.forEach(match => {

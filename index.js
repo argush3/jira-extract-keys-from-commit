@@ -21,14 +21,8 @@ async function extractJiraKeysFromCommit() {
         const payload = github.context.payload;
         // console.log("github: ", github);
 
-        // const octokit = new Octokit({
-        //     auth: githubToken,
-        //     baseUrl: 'https://api.github.com'
-        // });
-
         const token = process.env['GITHUB_TOKEN'];
         console.log("github token: " + token);
-        // const octokit = new github.Github(token);
         const octokit = new Octokit({
             auth: token,
         });
@@ -37,9 +31,9 @@ async function extractJiraKeysFromCommit() {
             let resultArr = [];
 
             console.log("is pull request...");
-            console.log("payload.repository.owner.login: " + payload.repository.owner.login);
-            console.log("payload.repository.name: " + payload.repository.name);
-            console.log("payload.number: " + payload.number);
+            // console.log("payload.repository.owner.login: " + payload.repository.owner.login);
+            // console.log("payload.repository.name: " + payload.repository.name);
+            // console.log("payload.number: " + payload.number);
 
             const owner = payload.repository.owner.login;
             const repo = payload.repository.name;

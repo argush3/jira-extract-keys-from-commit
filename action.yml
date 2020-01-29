@@ -5,7 +5,7 @@ inputs:
 #  github-token:
 #    description: 'Github token used to call Github REST API.  Only required when is-pull-request input parameter is
 #                  set to true'
-    required: false
+#    required: false
   is-pull-request:
     description: 'if set to true, other input parameters will be ignored and keys from commits associated with pull
                   request will be retrieved and parseed for Jira keys'

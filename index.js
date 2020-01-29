@@ -5,7 +5,6 @@ const Octokit = require("@octokit/rest");
 
 async function extractJiraKeysFromCommit() {
     try {
-
         const regex = /([A-Z]+-\d+)/g;
         // const githubToken = core.getInput('github-token');
         // console.log("core.getInput('is-pull-request'): " + core.getInput('is-pull-request'));

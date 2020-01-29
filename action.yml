@@ -2,9 +2,9 @@ name: 'Jira Extract Keys From Commit'
 description: 'Github Action to extract jira keys from commit messages and output in comma delimited format.  This action
               was created to be used with jira-upload-build-info Github Action'
 inputs:
-  github-token:
-    description: 'Github token used to call Github REST API.  Only required when is-pull-request input parameter is
-                  set to true'
+#  github-token:
+#    description: 'Github token used to call Github REST API.  Only required when is-pull-request input parameter is
+#                  set to true'
     required: false
   is-pull-request:
     description: 'if set to true, other input parameters will be ignored and keys from commits associated with pull

@@ -1,8 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const matchAll = require("match-all");
-// const Octokit = require("@octokit/rest");
-// const Octokit = require("@octokit/action");
+const Octokit = require("@octokit/rest");
 
 async function extractJiraKeysFromCommit() {
     try {
@@ -29,10 +28,13 @@ async function extractJiraKeysFromCommit() {
 
         const token = process.env['GITHUB_TOKEN'];
         console.log("github token: " + token);
-        const octokit = new github.Github(token);
+        // const octokit = new github.Github(token);
+        const octokit = new Octokit({
+            auth: token,
+        });
 
         if(isPullRequest) {
-            console.log("is pull request");
+            console.log("is pull request...");
 
             console.log("payload.repository.owner.login: " + payload.repository.owner.login);
             console.log("payload.repository.name: " + payload.repository.name);
@@ -42,12 +44,12 @@ async function extractJiraKeysFromCommit() {
             const repo = payload.repository.name;
             const prNum = payload.number;
 
-            const commits = await octokit.pulls.listCommits({
+            const { data } = await octokit.pulls.listCommits({
                 owner,
                 repo,
                 prNum
             });
-            console.log("commits: ", commits);
+            console.log("commits: ", data);
             core.setOutput("jira-keys", "");
         }
         else {

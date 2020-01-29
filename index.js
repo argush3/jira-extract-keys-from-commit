@@ -34,8 +34,9 @@ async function extractJiraKeysFromCommit() {
         });
 
         if(isPullRequest) {
-            console.log("is pull request...");
+            let resultArr = [];
 
+            console.log("is pull request...");
             console.log("payload.repository.owner.login: " + payload.repository.owner.login);
             console.log("payload.repository.name: " + payload.repository.name);
             console.log("payload.number: " + payload.number);
@@ -44,13 +45,30 @@ async function extractJiraKeysFromCommit() {
             const repo = payload.repository.name;
             const prNum = payload.number;
 
-            const { data } = await octokit.pulls.listCommits({
+            const { commits } = await octokit.pulls.listCommits({
                 owner: owner,
                 repo: repo,
                 pull_number: prNum
             });
-            console.log("commits: ", data);
-            core.setOutput("jira-keys", "");
+            // console.log("commits: ", commits);
+
+            commits.forEach(commit => {
+                // console.log("commit: ", commit);
+                const matches = matchAll(commit.message, regex).toArray();
+                matches.forEach(match => {
+                    if(resultArr.find(element => element == match)) {
+                        console.log(match + " is already included in result array");
+                    } else {
+                        console.log(" adding " + match + " to result array");
+                        resultArr.push(match);
+                    }
+                });
+
+            });
+
+            const result = resultArr.join(',');
+            console.log("result: ", result);
+            core.setOutput("jira-keys", result);
         }
         else {
             console.log("not a pull request");

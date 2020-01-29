@@ -45,14 +45,14 @@ async function extractJiraKeysFromCommit() {
             const repo = payload.repository.name;
             const prNum = payload.number;
 
-            const { commits } = await octokit.pulls.listCommits({
+            const { data } = await octokit.pulls.listCommits({
                 owner: owner,
                 repo: repo,
                 pull_number: prNum
             });
             // console.log("commits: ", commits);
 
-            commits.forEach(commit => {
+            data.forEach(commit => {
                 // console.log("commit: ", commit);
                 const matches = matchAll(commit.message, regex).toArray();
                 matches.forEach(match => {

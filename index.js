@@ -17,7 +17,7 @@ async function extractJiraKeysFromCommit() {
         const jsonPayload = JSON.stringify(github.context.payload, undefined, 2);
         // console.log("github context json payload: ", jsonPayload);
         const payload = github.context.payload;
-        // console.log("github: ", github);
+        console.log("github: ", github);
 
         const token = process.env['GITHUB_TOKEN'];
         console.log("github token: " + token);

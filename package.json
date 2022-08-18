@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/argush3/jira-extract-keys-from-commit#readme",
   "dependencies": {
-    "@actions/core": "^1.2.1",
+    "@actions/core": "^1.9.1",
     "@actions/github": "^2.0.1",
     "@octokit/rest": "^16.40.0",
     "match-all": "^1.2.5"
